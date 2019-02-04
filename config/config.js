@@ -4,14 +4,14 @@ const CONFIG = {
   development: {
     username: "root",
     password: "password",
-    database: "NW_App",
+    database: "sloth_db",
     host: "127.0.0.1",
     dialect: "mysql"
   },
   test: {
     username: "root",
     password: "password",
-    database: "NW_App",
+    database: "sloth_db",
     host: "127.0.0.1",
     dialect: "mysql"
   },
