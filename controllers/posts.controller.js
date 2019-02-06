@@ -1,5 +1,13 @@
 const { Post } = require("../models");
 
+const get = async (req, res) => {
+  let { id } = req.params;
+
+  Post.findOne({ where: { id } }).then(post => res.json({ message: post }));
+};
+
+module.exports.get = get;
+
 const create = async (req, res) => {
   Post.create(req.body)
     .then(results => res.json(results))

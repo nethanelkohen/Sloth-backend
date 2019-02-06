@@ -1,5 +1,15 @@
 const { Station } = require("../models");
 
+const get = async (req, res) => {
+  let { id } = req.params;
+
+  Station.findOne({ where: { id } }).then(station =>
+    res.json({ message: station })
+  );
+};
+
+module.exports.get = get;
+
 const create = async (req, res) => {
   Station.create(req.body)
     .then(results => res.json(results))

@@ -4,6 +4,8 @@ const PostController = require("../controllers/posts.controller");
 
 router.post("/", PostController.create);
 
+router.get("/:id", PostController.get);
+
 router.put("/increment/:id", PostController.changeScore);
 
 router.put("/decrement/:id", PostController.changeScore);

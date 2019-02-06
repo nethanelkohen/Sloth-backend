@@ -1,4 +1,13 @@
 const { User } = require("../models");
+const bcrypt = require("bcrypt");
+
+const get = async (req, res) => {
+  let { id } = req.params;
+
+  User.findOne({ where: { id } }).then(user => res.json({ message: user }));
+};
+
+module.exports.get = get;
 
 const create = async (req, res) => {
   User.create(req.body)
