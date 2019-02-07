@@ -10,6 +10,12 @@ const get = async (req, res) => {
 
 module.exports.get = get;
 
+const getAll = async (req, res) => {
+  Station.findAll().then(stations => res.json({ message: stations }));
+};
+
+module.exports.getAll = getAll;
+
 const create = async (req, res) => {
   Station.create(req.body)
     .then(results => res.json(results))

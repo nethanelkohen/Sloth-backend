@@ -4,6 +4,8 @@ const StationController = require("../controllers/stations.controller");
 
 router.post("/", StationController.create);
 
+router.get("/all", StationController.getAll);
+
 router.get("/:id", StationController.get);
 
 router.put("/:id", StationController.edit);
