@@ -6,13 +6,20 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       autoIncrement: true
     },
-    station: DataTypes.STRING,
     train: DataTypes.STRING,
+    station: DataTypes.STRING,
     status_update: DataTypes.STRING,
     comments: DataTypes.STRING,
     photo: DataTypes.STRING,
     vetting_score: DataTypes.INTEGER
   });
+
+  // Post.associate = function(models) {
+  //   this.belongsTo(models.Station, {
+  //     as: "station_key",
+  //     foreignKey: "station"
+  //   });
+  // };
 
   return Post;
 };

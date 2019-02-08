@@ -1,4 +1,4 @@
-const { Post } = require("../models");
+const { Post, Station } = require("../models");
 
 const get = async (req, res) => {
   let { id } = req.params;
@@ -11,7 +11,13 @@ module.exports.get = get;
 const create = async (req, res) => {
   Post.create(req.body)
     .then(results => res.json(results))
+    .then(Station.findOne({ where: { station: req.body.station } }))
+    .then(res => console.log("station", res))
     .catch(err => res.json(err));
+
+  Station.findOne({ where: { station: req.body.station } }).then(res =>
+    res.update({ status: req.body.status_update }).then(res => console.log(res))
+  );
 };
 
 module.exports.create = create;
