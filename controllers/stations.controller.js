@@ -1,9 +1,9 @@
 const { Station } = require("../models");
 
 const get = async (req, res) => {
-  let { id } = req.params;
+  let { station } = req.params;
 
-  Station.findOne({ where: { id } }).then(station =>
+  Station.findOne({ where: { station } }).then(station =>
     res.json({ message: station })
   );
 };
@@ -26,9 +26,9 @@ module.exports.create = create;
 
 const edit = async (req, res) => {
   let { body } = req;
-  let { id } = req.params;
+  let { station } = req.params;
 
-  Station.findOne({ where: { id } })
+  Station.findOne({ where: { station } })
     .then(updatedStation => {
       if (updatedStation) {
         updatedStation.update(body);

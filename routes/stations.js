@@ -6,8 +6,8 @@ router.post("/", StationController.create);
 
 router.get("/all", StationController.getAll);
 
-router.get("/:id", StationController.get);
+router.get("/:station", StationController.get);
 
-router.put("/:id", StationController.edit);
+router.put("/:station", StationController.edit);
 
 module.exports = router;
