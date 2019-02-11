@@ -6,6 +6,8 @@ router.post("/", PostController.create);
 
 router.get("/:id", PostController.get);
 
+router.get("/one/:station", PostController.getPostsbyStation);
+
 router.put("/increment/:id", PostController.changeScore);
 
 router.put("/decrement/:id", PostController.changeScore);
