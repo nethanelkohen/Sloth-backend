@@ -1,5 +1,8 @@
 const { User } = require("../models");
 const bcrypt = require("bcrypt");
+const express = require("express");
+const jwt = require("jsonwebtoken");
+const passport = require("passport");
 
 const get = async (req, res) => {
   let { id } = req.params;
