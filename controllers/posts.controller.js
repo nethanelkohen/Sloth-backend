@@ -20,6 +20,18 @@ const getPostsbyStation = async (req, res) => {
 
 module.exports.getPostsbyStation = getPostsbyStation;
 
+const getAllPostsbyStation = async (req, res) => {
+  let { station } = req.params;
+
+  Post.findAll({
+    limit: 5,
+    where: { station },
+    order: [["createdAt", "DESC"]]
+  }).then(entries => res.json({ message: entries }));
+};
+
+module.exports.getAllPostsbyStation = getAllPostsbyStation;
+
 const create = async (req, res) => {
   Post.create(req.body)
     .then(results => res.json(results))
