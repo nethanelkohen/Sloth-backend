@@ -1,4 +1,5 @@
 const { Post, Station } = require("../models");
+const { handlePushTokens } = require("../middleware/notification");
 
 const get = async (req, res) => {
   let { id } = req.params;
@@ -36,12 +37,13 @@ const create = async (req, res) => {
   Post.create(req.body)
     .then(results => res.json(results))
     .then(Station.findOne({ where: { station: req.body.station } }))
-    .then(res => console.log("station", res))
     .catch(err => res.json(err));
 
-  Station.findOne({ where: { station: req.body.station } }).then(res =>
-    res.update({ status: req.body.status_update }).then(res => console.log(res))
-  );
+  Station.findOne({ where: { station: req.body.station } }).then(res => {
+    res.update({ status: req.body.status_update }).then(res => res);
+  });
+
+  handlePushTokens(req.body);
 };
 
 module.exports.create = create;

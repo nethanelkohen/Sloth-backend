@@ -12,8 +12,6 @@ router.get(
   "/profile",
   passport.authenticate("jwt", { session: false }),
   function(req, res, next) {
-    console.log(req);
-
     res.send(req.user);
   }
 );

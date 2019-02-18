@@ -13,6 +13,7 @@ const stationRouter = require("./routes/stations");
 const usersRouter = require("./routes/users");
 const postsRouter = require("./routes/posts");
 const authRouter = require("./routes/auth");
+const tokenRouter = require("./routes/token");
 
 const app = express();
 
@@ -33,6 +34,7 @@ app.use("/user", usersRouter);
 app.use("/station", stationRouter);
 app.use("/post", postsRouter);
 app.use("/auth", authRouter);
+app.use("/token", tokenRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
