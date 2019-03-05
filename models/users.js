@@ -25,11 +25,5 @@ module.exports = (sequelize, DataTypes) => {
       });
   });
 
-  User.prototype.comparePassword = async function(password) {
-    return bcrypt.compareSync(password, this.password).catch(err => {
-      throw new Error();
-    });
-  };
-
   return User;
 };

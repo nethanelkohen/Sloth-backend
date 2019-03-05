@@ -13,7 +13,9 @@ module.exports.get = get;
 
 const create = async (req, res) => {
   User.create(req.body)
-    .then(results => res.json(results))
+    .then(results =>
+      res.json({ message: "You're signed up! Please log in.", results })
+    )
     .catch(err => res.json(err));
 };
 
