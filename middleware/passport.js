@@ -1,6 +1,6 @@
 const passport = require("passport");
 const passportJWT = require("passport-jwt");
-
+const bcrypt = require("bcrypt");
 const ExtractJWT = passportJWT.ExtractJwt;
 
 const LocalStrategy = require("passport-local").Strategy;
@@ -9,28 +9,29 @@ const JWTStrategy = passportJWT.Strategy;
 const { User } = require("../models");
 
 passport.use(
-  new LocalStrategy(
-    {
-      usernameField: "username",
-      passwordField: "password"
-    },
-    function(username, password, cb) {
-      //Assume there is a DB module pproviding a global User
-      return User.findOne({ where: { username, password } })
-        .then(user => {
-          if (!user) {
-            return cb(null, false, {
-              message: "Incorrect username or password."
-            });
-          }
+  new LocalStrategy((username, password, done) => {
+    try {
+      User.findOne({
+        where: {
+          username: username
+        }
+      }).then(user => {
+        if (user === null) {
+          return done(null, false, { message: "Username not found" });
+        } else {
+          bcrypt.compare(password, user.password).then(response => {
+            if (response !== true) {
+              return done(null, false, { message: "Wrong password" });
+            }
 
-          return cb(null, user.id, {
-            message: "Logged In Successfully"
+            return done(null, user);
           });
-        })
-        .catch(err => cb(err));
+        }
+      });
+    } catch (err) {
+      done(err);
     }
-  )
+  })
 );
 
 passport.use(
@@ -40,8 +41,7 @@ passport.use(
       secretOrKey: process.env.JWT_SECRET
     },
     function(jwtPayload, cb) {
-      //find the user in db if needed
-      return User.findByPk(jwtPayload)
+      return User.findByPk(jwtPayload.id)
         .then(user => cb(null, user))
         .catch(err => cb(err));
     }

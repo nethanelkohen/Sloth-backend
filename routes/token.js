@@ -1,12 +1,18 @@
 const express = require("express");
 const router = express.Router();
+const { User } = require("../models");
 
-const { saveToken, handlePushTokens } = require("../middleware/notification");
+const { handlePushTokens } = require("../middleware/notification");
 
-router.post("/", (req, res) => {
-  saveToken(req.body.token.value);
-  console.log(`Received push token, ${req.body.token.value}`);
-  res.send(`Received push token, ${req.body.token.value}`);
+router.post("/:id", (req, res) => {
+  const { token } = req.body.token;
+  const { id } = req.params;
+
+  User.findOne({ where: { id } }).then(user => {
+    user.update({ expo_token: token });
+  });
+
+  return res.send(`Updated user's token`);
 });
 
 router.post("/message", (req, res) => {

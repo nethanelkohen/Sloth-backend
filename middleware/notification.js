@@ -1,15 +1,8 @@
 const { Expo } = require("expo-server-sdk");
-
+const { User } = require("../models");
 const expo = new Expo();
+
 let savedPushTokens = [];
-
-const saveToken = token => {
-  if (savedPushTokens.indexOf(token === -1)) {
-    savedPushTokens.push(token);
-  }
-};
-
-module.exports.saveToken = saveToken;
 
 const handlePushTokens = arg => {
   let { train, station, status_update } = arg;

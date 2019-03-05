@@ -5,20 +5,21 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const logger = require("morgan");
 const passport = require("passport");
-
 require("dotenv").config();
+const app = express();
+
 require("./middleware/passport");
+
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(passport.initialize());
 
 const stationRouter = require("./routes/stations");
 const usersRouter = require("./routes/users");
 const postsRouter = require("./routes/posts");
 const authRouter = require("./routes/auth");
 const tokenRouter = require("./routes/token");
-
-const app = express();
-
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -27,7 +28,6 @@ app.set("view engine", "jade");
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/user", usersRouter);
