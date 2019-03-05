@@ -18,6 +18,7 @@
     "jade": "~1.11.0",
     "jsonwebtoken": "^8.4.0",
     "morgan": "~1.9.0",
+    "mta-gtfs": "^1.1.0",
     "mysql2": "^1.6.4",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
