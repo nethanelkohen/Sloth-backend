@@ -7,7 +7,8 @@ const CONFIG = {
     database: "sloth_db",
     host: "127.0.0.1",
     dialect: "mysql",
-    logging: false
+    logging: false,
+    operatorsAliases: false
   },
   test: {
     username: "root",
@@ -15,7 +16,8 @@ const CONFIG = {
     database: "sloth_db",
     host: "127.0.0.1",
     dialect: "mysql",
-    logging: false
+    logging: false,
+    operatorsAliases: false
   },
   production: {
     username: process.env.DB_USER,
@@ -23,7 +25,8 @@ const CONFIG = {
     database: process.env.DB_NAME,
     host: process.env.DB_HOST,
     dialect: process.env.DB_DIALECT,
-    logging: false
+    logging: false,
+    operatorsAliases: false
   }
 };
 
