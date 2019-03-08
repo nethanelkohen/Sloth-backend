@@ -31,7 +31,7 @@ module.exports = router;
 router.get("/status", (req, res, next) => {
   mta
     .status("subway")
-    .then(result => res.send(result))
+    .then(result => res.json({ result }))
     .catch(err => console.log(err));
 });
 
