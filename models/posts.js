@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       autoIncrement: true
     },
-    train: DataTypes.STRING,
+    direction: DataTypes.STRING,
     station: DataTypes.STRING,
     status_update: DataTypes.STRING,
     comments: DataTypes.STRING,

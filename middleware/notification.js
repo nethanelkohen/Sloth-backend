@@ -3,7 +3,7 @@ const { User, Station } = require("../models");
 const expo = new Expo();
 
 const handlePushTokens = async arg => {
-  let { train, station, status_update } = arg;
+  let { direction, station, status_update } = arg;
 
   let notifications = [];
 
@@ -26,7 +26,7 @@ const handlePushTokens = async arg => {
           to: expo_token,
           sound: "default",
           title: `Update at ${station}`,
-          body: `The ${train} has been updated to: ${status_update}`
+          body: `${direction} bound trains running ${status_update}`
         });
       } else return;
     });
@@ -75,7 +75,7 @@ module.exports.handlePushTokens = handlePushTokens;
 //           to: expo_token,
 //           sound: "default",
 //           title: `${home_station} `,
-//           body: `The ${train} has been updated to: ${status_update}`
+//           body: `The ${direction} has been updated to: ${status_update}`
 //         });
 //       } else return;
 //     });
