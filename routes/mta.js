@@ -29,6 +29,8 @@ router.get("/schedule", (req, res, next) => {
 module.exports = router;
 
 router.get("/status", (req, res, next) => {
+  console.log("IN MTA", req, res);
+
   mta
     .status("subway")
     .then(result => res.json({ result }))
